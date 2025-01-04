@@ -31,14 +31,14 @@
       </div>
       <!-- 價格 -->
       <div class="text-right">
-        <span class="text-lg text-bold py-2">{{ convertedPrice }}</span>
+        <span v-format-currency="currency" class="text-lg text-bold py-2">{{ goods.UnitPrice }}</span>
       </div>
     </div>
   </el-card>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import Decimal from 'decimal.js';
 
 const props = defineProps({

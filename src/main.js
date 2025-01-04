@@ -3,6 +3,7 @@ import 'element-plus/dist/index.css'
 import 'virtual:svg-icons-register'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { customDirectives } from '@/directives'
 // import SvgIcon from '@/components/SvgIcon.vue';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
@@ -13,6 +14,7 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(customDirectives)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }

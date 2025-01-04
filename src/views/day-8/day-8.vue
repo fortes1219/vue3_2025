@@ -21,14 +21,14 @@ import { useGoodsStore } from '@/stores/goods';
 
 const goodsStore = useGoodsStore();
 
-const currency = ref('');
+const currency = ref('USD');
 const selectedCurrency = ref({});
 
 const currencyList = ref([
-  { label: '美元', value: 'USD', locale: 'en-US', rate: 31 },
-  { label: '台幣', value: 'TWD', locale: 'zh-TW', rate: 1 },
-  { label: '歐元', value: 'EUR', locale: 'de-DE', rate: 30 },
-  { label: '日圓', value: 'JPY', locale: 'ja-JP', rate: 0.21 }
+  { label: '美元', value: 'USD', locale: 'en-US', rate: 31, minimumFractionDigits: 0 },
+  { label: '台幣', value: 'TWD', locale: 'zh-TW', rate: 1, minimumFractionDigits: 0 },
+  { label: '歐元', value: 'EUR', locale: 'de-DE', rate: 30, minimumFractionDigits: 0 },
+  { label: '日圓', value: 'JPY', locale: 'ja', rate: 0.21, minimumFractionDigits: 0 }
 ]);
 
 const onCurrencyChange = val => {
@@ -38,6 +38,7 @@ const onCurrencyChange = val => {
 
 onMounted(async () => {
   await nextTick();
-  goodsStore.getProductList();
+  await goodsStore.getProductList();
+  onCurrencyChange(currency.value);
 });
 </script>
